@@ -63,7 +63,7 @@ public class StudentsService {
   }
 
   public Page<Student> getStudents(int page) {
-    Page<Student> students = studentsRepository.findAll(PageRequest.of(10 * (page -1), 6));
+    Page<Student> students = studentsRepository.findAll(PageRequest.of(page - 1, 6));
     return students;
   }
 

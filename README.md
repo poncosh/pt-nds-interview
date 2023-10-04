@@ -33,7 +33,7 @@ mvn spring-boot:run
 2. Lakukan instalasi package
 
 ```
-cd pt-nds-interview
+cd pt-nds-interview-frontend
 npm install
 ```
 

@@ -42,3 +42,7 @@ npm install
 ```
 npm run dev
 ```
+
+## Video Demo
+
+https://github.com/poncosh/pt-nds-interview/assets/74602380/0719d48c-7b76-43d6-b3ff-bc0e54c79ae7

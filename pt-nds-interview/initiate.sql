@@ -9,5 +9,5 @@ create table students (
 	tanggal_lahir DATE not null,
 	no_handphone VARCHAR(255) not null,
   created_at timestamp default current_timestamp,
-  updated_at timestamp default current_timestamp
+  updated_at timestamp default current_timestamp on update current_timestamp
 ) engine InnoDB;

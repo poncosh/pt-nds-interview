@@ -32,7 +32,7 @@ export const ModalAdd = () => {
     if (Number(data.tanggalLahir.split("-")[0]) > 2005) {
       return setErrors({
         ...errors,
-        tanggalLahir: "Students must as least 18 yo!",
+        tanggalLahir: "Students must at least 18 yo!",
       });
     }
     setErrors({ ...errors, tanggalLahir: "", noHandphone: "" });

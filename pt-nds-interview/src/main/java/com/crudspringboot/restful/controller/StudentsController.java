@@ -5,6 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,6 +24,7 @@ import com.crudspringboot.restful.model.StudentsResponse;
 import com.crudspringboot.restful.service.StudentsService;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 public class StudentsController {
   @Autowired
   private StudentsService studentsService;
@@ -43,10 +45,10 @@ public class StudentsController {
     produces = MediaType.APPLICATION_JSON_VALUE
   )
   public StudentsResponse<Page<Student>> getStudents(@RequestParam("page") int page) {
-    Page<Student> students = studentsService.getStudents(page);
-    if (page == 0 || page < 0 || page > students.getTotalPages()) {
+    if (page == 0 || page < 0) {
       throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Page is not available");
     }
+    Page<Student> students = studentsService.getStudents(page);
     return new StudentsResponse<>(students.getTotalPages(), students);
   }
 
@@ -55,9 +57,16 @@ public class StudentsController {
     consumes = MediaType.ALL_VALUE,
     produces = MediaType.APPLICATION_JSON_VALUE
   )
-  public Response<Student> getStudentsByNim(@PathVariable long nim) {
+  public PutStudentsResponse<Student> getStudentsByNim(@PathVariable long nim) {
+    if (nim == 0 || nim < 0) {
+      throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User with ID negative is not available");
+    }
     Student student = studentsService.getStudentByNim(nim);
-    return Response.<Student>builder().data(student).build();
+    if (student != null) {
+      return new PutStudentsResponse<>("OK", student);
+    } else {
+      throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "No user with such ID");
+    }
   }
 
   @PutMapping(

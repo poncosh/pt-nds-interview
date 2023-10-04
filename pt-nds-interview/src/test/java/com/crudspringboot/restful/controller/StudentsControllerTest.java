@@ -16,7 +16,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
-import com.crudspringboot.restful.model.AddStudentsRequest;
+import com.crudspringboot.restful.model.StudentsRequest;
 import com.crudspringboot.restful.model.Response;
 import com.crudspringboot.restful.repository.StudentsRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -47,7 +47,7 @@ public class StudentsControllerTest {
 
   @Test
   void testAddStudentSuccess() throws Exception {
-    AddStudentsRequest request = new AddStudentsRequest();
+    StudentsRequest request = new StudentsRequest();
     request.setNama("Joko Widodo");
     request.setAlamat("Jl. Jl. Dulu");
     request.setNoHandphone("08999329555");

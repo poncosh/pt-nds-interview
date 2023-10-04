@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class AddStudentsRequest {
+public class StudentsRequest {
 
   @NotBlank
   @Size(max = 255)
